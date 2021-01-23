@@ -2,6 +2,7 @@
 model
 tags
 
+.vscode
 venv
 __pycache__
 .gradle

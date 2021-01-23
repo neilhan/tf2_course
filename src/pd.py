@@ -26,8 +26,7 @@ pd_series_2 = pd.Series(data=[1, 2, 3], index=labels_2)
 
 print('pd_series + pd_series_2:\n', pd_series + pd_series_2)
 
-# pd DataFrame
-# --------------------------------------
+print('pd DataFrame --------------------------------------')
 columns = ['a', 'b', 'c', 'd']
 index = ['r1', 'r2', 'r3', 'r4', 'r5']
 data = np.random.randint(10, 20, (5, 4))
@@ -52,7 +51,7 @@ print('df.iloc[0:3]:\n', df.iloc[0:3])
 print('df.loc["r1","a"]:\n', df.loc['r1', 'a'])
 print('df.loc[["r1", "r2"],["a","b"]]:\n', df.loc[['r1', 'r2'], ['a', 'b']])
 
-print('filter ----------')
+print('filter --------------------')
 print('df rows a>13:\n', df[df['a'] > 13])
 
 print('df a>13 & b>13:\n', df[(df['a'] > 13) & (df['b'] > 13)])
@@ -82,8 +81,20 @@ print('df fillna with each column mean:\n', df2.fillna(df.mean()))
 
 print('GroupBy aggregation funcitons -------------------------------')
 # import csv file
-df = pd.read_csv(os.path.join('../TF_2_Notebooks_and_Data/01-Pandas-Crash-Course', 'Universities.csv'))
+df = pd.read_csv(os.path.join(
+    '../TF_2_Notebooks_and_Data/01-Pandas-Crash-Course', 'Universities.csv'))
 print('loaded Universities.csv:\n', df)
 print('head Universities.csv:\n', df.head())
 print('groupby year, do mean:\n', df.groupby('Year').mean())
-print('groupby year & sector, do mean:\n', df.groupby(['Year', 'Sector']).mean())
+print('groupby year & sector, do mean:\n',
+      df.groupby(['Year', 'Sector']).mean())
+print('groupby describe():\n', df.groupby('Year').describe())
+print('groupby describe().transpose():\n',
+      df.groupby('Year').describe().transpose())
+
+print('Operations ------------------------------')
+df_one = pd.DataFrame({'k1': ['A', 'A', 'B', 'B', 'C', 'C'],
+                       'col1': [100, 200, 300, 300, 400, 500],
+                       'col2': ['NY', 'CA', 'WA', 'WA', 'AK', 'NV']})
+print('unique:\n unique k1: {0}, nunique k1: {1}'.format(df_one['k1'].unique(),
+                                                          df_one['k1'].nunique()))
