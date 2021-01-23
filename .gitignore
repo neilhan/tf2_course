@@ -1,0 +1,11 @@
+.idea
+model
+tags
+
+venv
+__pycache__
+.gradle
+.idea
+**/__models__
+**/__model__
+TF_2_Notebooks_and_Data
