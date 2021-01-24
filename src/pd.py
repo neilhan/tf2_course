@@ -97,4 +97,31 @@ df_one = pd.DataFrame({'k1': ['A', 'A', 'B', 'B', 'C', 'C'],
                        'col1': [100, 200, 300, 300, 400, 500],
                        'col2': ['NY', 'CA', 'WA', 'WA', 'AK', 'NV']})
 print('unique:\n unique k1: {0}, nunique k1: {1}'.format(df_one['k1'].unique(),
-                                                          df_one['k1'].nunique()))
+                                                         df_one['k1'].nunique()))
+print('value_counts col2: \n{0}'.format(df_one['col2'].value_counts()))
+print('drop_duplicates: \n{0}'.format(df_one.drop_duplicates()))
+print('value_counts col2 drop_duplicates: \n{0}'.format(
+    df_one.drop_duplicates()['col2'].value_counts()))
+
+print('apply a function -------------------------')
+df_one['NEW'] = df_one['col1'] * 10
+print('col1 x 10:\n{0}'.format(df_one))
+
+df_one = df_one.drop(axis=1, columns=['NEW'])
+df_one['NEW2'] = df_one['col2'].apply(lambda v: v[0])
+print('col2 [0]:\n{0}'.format(df_one))
+
+df_one['col1'].max()  # get the max of col1
+df_one['col1'].idxmax()  # get the index
+print('sort by col1: \n{0}'.format(
+    df_one.sort_values('col1', ascending=False)))
+print('columns: \n{0}'.format(df_one.columns))
+
+print('concatination ----------------------------')
+features = pd.DataFrame({'A': [100, 200, 300, 400, 500],
+                         'B': [12, 13, 14, 15, 16]})
+predictions = pd.DataFrame({'pred': [0, 1, 1, 0, 1]})
+
+print('concat:\n{0}'.format(pd.concat([features, predictions], axis=1)))
+print('one-hot on predictions:\n{0}'.format(
+    pd.get_dummies(predictions['pred'])))
