@@ -10,6 +10,17 @@ import sklearn.metrics as metrics
 
 import tensorflow as tf
 
+df = pd.read_csv('../TF_2_Notebooks_and_Data/DATA/kc_house_data.csv')
+print(df.isnull().sum())
+print(df.describe().transpose()) 
+print(df.corr())
+# sns.displot(df['price'])
+# sns.countplot(df['bathrooms'])
+# sns.pairplot(df)
+sns.scatterplot(x='sqft_living', y='price', data=df)
+plt.show()
+
+exit()
 
 df = pd.read_csv('../TF_2_Notebooks_and_Data/DATA/fake_reg.csv')
 print(df.head())
@@ -45,7 +56,6 @@ df_test = pd.DataFrame(pd.concat([pd.DataFrame(test_predictions), pd.DataFrame(y
 
 mae = metrics.mean_absolute_error(test_predictions, y_test)
 print('mae:', mae)
-exit()
 
 df_test.columns = ['a','b']
 print('df_test:', df_test)
@@ -57,6 +67,7 @@ plt.show()
 # loss_df = pd.DataFrame(model.history.history)
 # print('loss_df:', loss_df)
 # plt.plot(loss_df)
+
 # plt.show() 
 
 
